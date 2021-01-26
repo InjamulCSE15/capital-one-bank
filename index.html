@@ -5,41 +5,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Capital One Bank</title>
+    <link rel="shortcut icon" href="pictures/ONE-Logo.png" type="image/png">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600&display=swap" rel="stylesheet">
 </head>
 
 <body>
     <!-- Login area-->
     <div id="login-area">
-        <h1 class="text-center">Welcome to Capital One Bank</h1>
+        <h1 class="text-center title">Welcome to Capital One Bank</h1>
         <div class="submit-area">
             <h4>Login</h4>
             <input type="text" class="form-control" placeholder="Enter your email here.">
             <br>
             <input type="password" class="form-control" placeholder="Enter your password.">
             <br>
-            <button class="btn btn-success" id="login">Enter</button>
+            <button class="btn btn-primary" id="login">Enter</button>
         </div>
     </div>
     <!--Transaction Area-->
     <div id="transaction-area">
-        <h1 class="text-center">Transaction Summary</h1>
+        <h1 class="text-center title">Transaction Summary</h1>
         <div class="row mt-5">
-            <div class="col-md-4">
-                <div class="deposit status">
+            <div class="col-sm col-md-4 mt-1">
+                <div class="deposit status title">
                     <h5>Deposit</h5>
                     <h2>$<span id="currentDeposit">00</span></h2>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-sm col-md-4 mt-1">
                 <div class="withdraw status">
                     <h5>Withdraw</h5>
                     <h2>$<span id="currentWithdraw">00</span></h2>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-sm col-md-4 mt-1">
                 <div class="balance status">
                     <h5>Balance</h5>
                     <h2>$<span id="currentBalance">1200<span< /h2>
@@ -66,6 +68,9 @@
                 </div>
             </div>
         </div>
+        <div class="reset text-center m-5">
+            <button type="button" class="btn btn-outline-danger" id="reset">Reset</button>
+        </div>
     </div>
     <!--Java Script-->
     <script>
@@ -77,6 +82,15 @@
             const transactionArea = document.getElementById("transaction-area");
             transactionArea.style.display = "block";
         })
+        // Reset button event handler
+        const resetBtn = document.getElementById("reset");
+        resetBtn.addEventListener("click", function () {
+            const transactionArea = document.getElementById("transaction-area");
+            transactionArea.style.display = "none";
+            const loginArea = document.getElementById("login-area");
+            loginArea.style.display = "block";
+        })
+
         // Deposit button event handler
         const depositBtn = document.getElementById("addDeposit");
         depositBtn.addEventListener("click", function () {
@@ -101,9 +115,7 @@
             document.getElementById("withdrawAmount").value = "";
         })
 
-        // Balance Button handler
-
-        // Function create:
+        // Functions create:
         function updateSpanText(id, depositNumber) {
             const current = document.getElementById(id).innerText;
             const currentNumber = parseFloat(current);
