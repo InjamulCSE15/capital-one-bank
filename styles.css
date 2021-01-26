@@ -25,6 +25,8 @@ body{
     border-radius: 5px;
     color: white;
     font-weight: 600;
+    box-shadow: 5px 5px 10px gray;
+}
 }
 .title{
 font-family: 'Nunito', sans-serif;
