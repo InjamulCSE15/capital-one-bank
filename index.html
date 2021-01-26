@@ -25,10 +25,51 @@
     </div>
     <!--Transaction Area-->
     <div id="transaction-area">
-        <h1>Transaction Area</h1>
+        <h1 class="text-center">Transaction Summary</h1>
+        <div class="row mt-5">
+            <div class="col-md-4">
+                <div class="deposit status">
+                    <h5>Deposit</h5>
+                    <h2>$<span id="currentDeposit">00</span></h2>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="withdraw status">
+                    <h5>Withdraw</h5>
+                    <h2>$<span id="currentWithdraw">00</span></h2>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="balance status">
+                    <h5>Balance</h5>
+                    <h2>$<span id="currentBalance">00<span< /h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="submit-area">
+                    <h4>Deposit</h4>
+                    <input type="text" class="form-control" id="depositAmount"
+                        placeholder="$ amount you want to deposit">
+                    <br>
+                    <button class="btn btn-success" id="addDeposit">Deposit</button>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="submit-area">
+                    <h4>Withdraw</h4>
+                    <input type="text" class="form-control" id="withdrawAmount"
+                        placeholder="$ amount you want to withdraw">
+                    <br>
+                    <button class="btn btn-success" id="addWithdraw">Withdraw</button>
+                </div>
+            </div>
+        </div>
     </div>
     <!--Java Script-->
     <script>
+        // Login button event handler
         const loginBtn = document.getElementById("login");
         loginBtn.addEventListener("click", function () {
             const loginArea = document.getElementById("login-area");
@@ -36,6 +77,44 @@
             const transactionArea = document.getElementById("transaction-area");
             transactionArea.style.display = "block";
         })
+        // Deposit button event handler
+        const depositBtn = document.getElementById("addDeposit");
+        depositBtn.addEventListener("click", function () {
+        
+            const depositNumber = getInputNumber("depositAmount");
+
+            updateSpanText("currentDeposit", depositNumber);
+
+            updateSpanText("currentBalance", depositNumber);
+
+
+            document.getElementById("depositAmount").value = "";
+
+        })
+
+        // Withdraw button handler
+        const withdrawBtn = document.getElementById("addWithdraw");
+        withdrawBtn.addEventListener("click", function () {
+           const withdrawNumber = getInputNumber("withdrawAmount");
+
+            document.getElementById("depositAmount").value = "";
+        })
+
+        // Balance Button handler
+
+        // Function create:
+        function updateSpanText(id, depositNumber) {
+            const current = document.getElementById(id).innerText;
+            const currentNumber = parseFloat(current);
+            const total = currentNumber + depositNumber;
+            document.getElementById(id).innerText = total;
+        }
+
+        function getInputNumber(id) {
+            const Amount = document.getElementById(id).value;
+            const amountNumber = parseFloat(Amount);
+            return amountNumber;
+        }
     </script>
 </body>
 
