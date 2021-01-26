@@ -42,7 +42,7 @@
             <div class="col-md-4">
                 <div class="balance status">
                     <h5>Balance</h5>
-                    <h2>$<span id="currentBalance">00<span< /h2>
+                    <h2>$<span id="currentBalance">1200<span< /h2>
                 </div>
             </div>
         </div>
@@ -80,13 +80,11 @@
         // Deposit button event handler
         const depositBtn = document.getElementById("addDeposit");
         depositBtn.addEventListener("click", function () {
-        
+
             const depositNumber = getInputNumber("depositAmount");
 
             updateSpanText("currentDeposit", depositNumber);
-
             updateSpanText("currentBalance", depositNumber);
-
 
             document.getElementById("depositAmount").value = "";
 
@@ -95,9 +93,12 @@
         // Withdraw button handler
         const withdrawBtn = document.getElementById("addWithdraw");
         withdrawBtn.addEventListener("click", function () {
-           const withdrawNumber = getInputNumber("withdrawAmount");
+            const withdrawNumber = getInputNumber("withdrawAmount");
 
-            document.getElementById("depositAmount").value = "";
+            updateSpanText("currentWithdraw", withdrawNumber);
+            updateSpanText("currentBalance", -1 * withdrawNumber);
+
+            document.getElementById("withdrawAmount").value = "";
         })
 
         // Balance Button handler
